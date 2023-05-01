@@ -45,14 +45,16 @@ def get_definition(term_url: str) -> str:
 
 
 if __name__ == '__main__':
-    page = get_page("https://itinvest.ru/education12/glossary/")
-    terms = get_terms(page)
-    result = {}
-    for i, term in enumerate(terms):
-        try:
-            print(f"Processing {i + 1}/{len(terms)} ({term.text})")
-            result[term.text] = get_definition(term.attrs['href'])
-        except Exception as e:
-            print(f"[ERROR] {e}")
-    with open("glossary.json", 'w') as f:
-        json.dump(result, f, indent=4, encodings='utf-8')
+    # page = get_page("https://itinvest.ru/education12/glossary/")
+    # terms = get_terms(page)
+    # result = {}
+    # for i, term in enumerate(terms):
+    #     try:
+    #         print(f"Processing {i + 1}/{len(terms)} ({term.text})")
+    #         result[term.text] = get_definition(term.attrs['href'])
+    #     except Exception as e:
+    #         print(f"[ERROR] {e}")
+    with open("glossary.json", 'r') as f:
+        result = json.load(f)
+    with open("glossary.json", 'w', encoding="utf-8") as f:
+        json.dump(result, f, indent=4, ensure_ascii=False)
