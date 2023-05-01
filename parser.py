@@ -54,5 +54,5 @@ if __name__ == '__main__':
             result[term.text] = get_definition(term.attrs['href'])
         except Exception as e:
             print(f"[ERROR] {e}")
-    with open("glossary.json", 'r') as f:
+    with open("glossary.json", 'w') as f:
         json.dump(result, f, indent=4, encodings='utf-8')
