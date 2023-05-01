@@ -49,7 +49,10 @@ if __name__ == '__main__':
     terms = get_terms(page)
     result = {}
     for i, term in enumerate(terms):
-        print(f"Processing {i + 1}/{len(terms)} ({term.text})")
-        result[term.text] = get_definition(term.attrs['href'])
+        try:
+            print(f"Processing {i + 1}/{len(terms)} ({term.text})")
+            result[term.text] = get_definition(term.attrs['href'])
+        except Exception as e:
+            print(f"[ERROR] {e}")
     with open("glossary.json", 'r') as f:
         json.dump(result, f, indent=4, encodings='utf-8')
